@@ -1,113 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Contact Folder 📁 by Mr Affection❤️</title>
 
+  <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
     }
 
     body {
+      margin: 0;
       min-height: 100vh;
-      background: linear-gradient(135deg, #111827, #1f2937);
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       padding: 20px;
-      color: white;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
     }
 
     .container {
       width: 100%;
-      max-width: 480px;
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 25px;
-      padding: 30px 25px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    }
-
-    .logo {
-      text-align: center;
-      font-size: 42px;
-      margin-bottom: 10px;
+      max-width: 430px;
+      background: white;
+      padding: 28px 22px;
+      border-radius: 20px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
     }
 
     h1 {
+      margin: 0 0 8px;
       text-align: center;
-      font-size: 27px;
-      margin-bottom: 8px;
+      font-size: 24px;
     }
 
     .subtitle {
       text-align: center;
-      color: #cbd5e1;
-      margin-bottom: 28px;
+      color: #666;
+      margin-bottom: 25px;
       font-size: 14px;
     }
 
     label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
       font-weight: bold;
+      font-size: 14px;
     }
 
     input,
     select {
       width: 100%;
-      padding: 15px;
+      padding: 13px;
       margin-bottom: 18px;
-      border-radius: 12px;
-      border: 1px solid #475569;
-      background: #0f172a;
-      color: white;
+      border: 1px solid #d7dbe3;
+      border-radius: 10px;
       font-size: 16px;
+      background: white;
       outline: none;
     }
 
     input:focus,
     select:focus {
-      border-color: #ef4444;
+      border-color: #111827;
     }
 
     button {
       width: 100%;
-      padding: 16px;
+      padding: 14px;
       border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #ef4444, #dc2626);
+      border-radius: 10px;
+      background: #111827;
       color: white;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
     }
 
     button:disabled {
       opacity: 0.6;
+      cursor: not-allowed;
     }
 
     #message {
-      text-align: center;
       margin-top: 18px;
-      font-weight: bold;
-      min-height: 24px;
-    }
-
-    .footer {
       text-align: center;
-      color: #94a3b8;
-      font-size: 12px;
-      margin-top: 25px;
+      font-size: 14px;
+      font-weight: bold;
+      min-height: 20px;
     }
   </style>
 </head>
@@ -116,13 +102,11 @@
 
   <div class="container">
 
-    <div class="logo">📁❤️</div>
+    <h1>Contact Folder 📁</h1>
 
-    <h1>Contact Folder</h1>
-
-    <p class="subtitle">
+    <div class="subtitle">
       by Mr Affection❤️
-    </p>
+    </div>
 
     <form id="contactForm">
 
@@ -130,57 +114,58 @@
       <input
         type="text"
         id="name"
-        placeholder="Enter your name"
+        name="name"
+        placeholder="Enter full name"
         required
-      >
+      />
 
-      <label for="country">Country Code</label>
-      <select id="country" required>
+      <label for="country_code">Country Code</label>
+      <select id="country_code" name="country_code" required>
         <option value="">Select country code</option>
-        <option value="+1">🇺🇸 +1 — USA / Canada</option>
-        <option value="+509">🇭🇹 +509 — Haiti</option>
-        <option value="+33">🇫🇷 +33 — France</option>
-        <option value="+44">🇬🇧 +44 — United Kingdom</option>
-        <option value="+34">🇪🇸 +34 — Spain</option>
-        <option value="+49">🇩🇪 +49 — Germany</option>
-        <option value="+39">🇮🇹 +39 — Italy</option>
-        <option value="+32">🇧🇪 +32 — Belgium</option>
-        <option value="+41">🇨🇭 +41 — Switzerland</option>
-        <option value="+1">🇩🇴 +1 — Dominican Republic</option>
-        <option value="+52">🇲🇽 +52 — Mexico</option>
-        <option value="+55">🇧🇷 +55 — Brazil</option>
+        <option value="+1">🇺🇸 +1 USA / Canada</option>
+        <option value="+509">🇭🇹 +509 Haiti</option>
+        <option value="+33">🇫🇷 +33 France</option>
+        <option value="+44">🇬🇧 +44 United Kingdom</option>
+        <option value="+34">🇪🇸 +34 Spain</option>
+        <option value="+49">🇩🇪 +49 Germany</option>
+        <option value="+39">🇮🇹 +39 Italy</option>
+        <option value="+32">🇧🇪 +32 Belgium</option>
+        <option value="+41">🇨🇭 +41 Switzerland</option>
+        <option value="+1">🇩🇴 +1 Dominican Republic</option>
+        <option value="+52">🇲🇽 +52 Mexico</option>
+        <option value="+55">🇧🇷 +55 Brazil</option>
       </select>
 
       <label for="phone">Phone Number</label>
       <input
         type="tel"
         id="phone"
-        placeholder="Enter your phone number"
+        name="phone"
+        placeholder="Enter phone number"
         required
-      >
+      />
 
       <label for="gender">Gender</label>
-      <select id="gender" required>
+      <select id="gender" name="gender" required>
         <option value="">Select gender</option>
-        <option value="Fi">👩 Fi</option>
-        <option value="Gason">👨 Gason</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
       </select>
 
-      <button type="submit" id="submitButton">
+      <button type="submit" id="saveButton">
         💾 Save Contact
       </button>
 
       <div id="message"></div>
 
     </form>
-
-    <div class="footer">
-      © 2026 Contact Folder 📁 by Mr Affection❤️
-    </div>
-
   </div>
 
   <script>
+    // ==============================
+    // SUPABASE CONFIGURATION
+    // ==============================
 
     const SUPABASE_URL =
       "https://mdjoxszvnoyiltntgsas.supabase.co";
@@ -188,62 +173,140 @@
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_rsGDyxSF02tEyGOCOCzAIQ_FG5T6GBO";
 
-    const supabaseClient = window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_PUBLISHABLE_KEY
-    );
 
-    const form = document.getElementById("contactForm");
-    const button = document.getElementById("submitButton");
-    const message = document.getElementById("message");
+    // ==============================
+    // CREATE SUPABASE CLIENT
+    // ==============================
 
-    form.addEventListener("submit", async function(event) {
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    // ==============================
+    // FORM
+    // ==============================
+
+    const form =
+      document.getElementById("contactForm");
+
+    const button =
+      document.getElementById("saveButton");
+
+    const message =
+      document.getElementById("message");
+
+
+    // ==============================
+    // SAVE CONTACT
+    // ==============================
+
+    form.addEventListener("submit", async function (event) {
 
       event.preventDefault();
 
-      button.disabled = true;
-      button.textContent = "⏳ Saving...";
+      const name =
+        document.getElementById("name").value.trim();
 
-      message.textContent = "";
+      const country_code =
+        document.getElementById("country_code").value;
 
-      const name = document.getElementById("name").value.trim();
-      const country_code = document.getElementById("country").value;
-      const phone = document.getElementById("phone").value.trim();
-      const gender = document.getElementById("gender").value;
+      const phone =
+        document.getElementById("phone").value.trim();
 
-      const { error } = await supabaseClient
-        .from("Contact 📁 Folder by Mr. Affection❤️")
-        .insert([
-          {
-            name: name,
-            country_code: country_code,
-            phone: phone,
-            gender: gender
-          }
-        ]);
+      const gender =
+        document.getElementById("gender").value;
 
-      if (error) {
 
-        console.error(error);
+      if (!name || !country_code || !phone || !gender) {
 
-        message.style.color = "#f87171";
+        message.style.color = "#dc2626";
+
         message.textContent =
-          "❌ Something went wrong. Please try again.";
-
-        button.disabled = false;
-        button.textContent = "💾 Save Contact";
+          "Please complete all fields.";
 
         return;
       }
 
-      message.style.color = "#4ade80";
-      message.textContent =
-        "✅ Contact saved successfully!";
 
-      form.reset();
+      button.disabled = true;
+
+      button.textContent =
+        "Saving...";
+
+      message.textContent = "";
+
+
+      try {
+
+        const { data, error } =
+          await supabaseClient
+
+            .from("Contact 📁 Folder by Mr. Affection❤️")
+
+            .insert([
+              {
+                name: name,
+                country_code: country_code,
+                phone: phone,
+                gender: gender
+              }
+            ]);
+
+
+        if (error) {
+
+          console.error(
+            "Supabase Error:",
+            error
+          );
+
+          message.style.color =
+            "#dc2626";
+
+          message.textContent =
+            "❌ Something went wrong. Please try again.";
+
+          button.disabled = false;
+
+          button.textContent =
+            "💾 Save Contact";
+
+          return;
+        }
+
+
+        message.style.color =
+          "#16a34a";
+
+        message.textContent =
+          "✅ Contact saved successfully!";
+
+
+        form.reset();
+
+      } catch (error) {
+
+        console.error(
+          "Connection Error:",
+          error
+        );
+
+        message.style.color =
+          "#dc2626";
+
+        message.textContent =
+          "❌ Unable to connect to the server.";
+
+      }
+
 
       button.disabled = false;
-      button.textContent = "💾 Save Contact";
+
+      button.textContent =
+        "💾 Save Contact";
 
     });
 
