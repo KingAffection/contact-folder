@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact Folder 📁 by Mr Affection❤️</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #111827, #1f2937);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: white;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 25px;
+      padding: 30px 25px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 27px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #cbd5e1;
+      margin-bottom: 28px;
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 18px;
+      border-radius: 12px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #ef4444;
+    }
+
+    button {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ef4444, #dc2626);
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+    }
+
+    #message {
+      text-align: center;
+      margin-top: 18px;
+      font-weight: bold;
+      min-height: 24px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 12px;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="logo">📁❤️</div>
+
+    <h1>Contact Folder</h1>
+
+    <p class="subtitle">
+      by Mr Affection❤️
+    </p>
+
+    <form id="contactForm">
+
+      <label for="name">Full Name</label>
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter your name"
+        required
+      >
+
+      <label for="country">Country Code</label>
+      <select id="country" required>
+        <option value="">Select country code</option>
+        <option value="+1">🇺🇸 +1 — USA / Canada</option>
+        <option value="+509">🇭🇹 +509 — Haiti</option>
+        <option value="+33">🇫🇷 +33 — France</option>
+        <option value="+44">🇬🇧 +44 — United Kingdom</option>
+        <option value="+34">🇪🇸 +34 — Spain</option>
+        <option value="+49">🇩🇪 +49 — Germany</option>
+        <option value="+39">🇮🇹 +39 — Italy</option>
+        <option value="+32">🇧🇪 +32 — Belgium</option>
+        <option value="+41">🇨🇭 +41 — Switzerland</option>
+        <option value="+1">🇩🇴 +1 — Dominican Republic</option>
+        <option value="+52">🇲🇽 +52 — Mexico</option>
+        <option value="+55">🇧🇷 +55 — Brazil</option>
+      </select>
+
+      <label for="phone">Phone Number</label>
+      <input
+        type="tel"
+        id="phone"
+        placeholder="Enter your phone number"
+        required
+      >
+
+      <label for="gender">Gender</label>
+      <select id="gender" required>
+        <option value="">Select gender</option>
+        <option value="Fi">👩 Fi</option>
+        <option value="Gason">👨 Gason</option>
+      </select>
+
+      <button type="submit" id="submitButton">
+        💾 Save Contact
+      </button>
+
+      <div id="message"></div>
+
+    </form>
+
+    <div class="footer">
+      © 2026 Contact Folder 📁 by Mr Affection❤️
+    </div>
+
+  </div>
+
+  <script>
+
+    const SUPABASE_URL =
+      "https://mdjoxszvnoyiltntgsas.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_rsGDyxSF02tEyGOCOCzAIQ_FG5T6GBO";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+
+    const form = document.getElementById("contactForm");
+    const button = document.getElementById("submitButton");
+    const message = document.getElementById("message");
+
+    form.addEventListener("submit", async function(event) {
+
+      event.preventDefault();
+
+      button.disabled = true;
+      button.textContent = "⏳ Saving...";
+
+      message.textContent = "";
+
+      const name = document.getElementById("name").value.trim();
+      const country_code = document.getElementById("country").value;
+      const phone = document.getElementById("phone").value.trim();
+      const gender = document.getElementById("gender").value;
+
+      const { error } = await supabaseClient
+        .from("Contact 📁 Folder by Mr. Affection❤️")
+        .insert([
+          {
+            name: name,
+            country_code: country_code,
+            phone: phone,
+            gender: gender
+          }
+        ]);
+
+      if (error) {
+
+        console.error(error);
+
+        message.style.color = "#f87171";
+        message.textContent =
+          "❌ Something went wrong. Please try again.";
+
+        button.disabled = false;
+        button.textContent = "💾 Save Contact";
+
+        return;
+      }
+
+      message.style.color = "#4ade80";
+      message.textContent =
+        "✅ Contact saved successfully!";
+
+      form.reset();
+
+      button.disabled = false;
+      button.textContent = "💾 Save Contact";
+
+    });
+
+  </script>
+
+</body>
+</html>
